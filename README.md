@@ -5,13 +5,22 @@
 
   <p>This project brings Android and Google TV to x86 and x64 platforms, allowing you to run TV-optimized Android OS on standard laptops, desktops, and other non-ARM devices.</p>
 
-  <hr>
+<hr>
 
-  <h2>🔗 Download</h2>
-  <p>All necessary files can be found here: <strong><a href="#">https://terabox.com/s/1KLFes4RqTjn8IE3nu2VZUA</a></strong><br>
-  <em>Navigate to the <code>ATV-GTG-for-x86_64</code> folder within the link.</em></p>
+<h2>🔗 Download</h2>
+<p>
+  All necessary files can be found here:
+  <strong>
+    <a href="https://terabox.com/s/1KLFes4RqTjn8IE3nu2VZUA" target="_blank" rel="noopener noreferrer">
+      https://terabox.com/s/1KLFes4RqTjn8IE3nu2VZUA
+    </a>
+  </strong>
+  <br>
+  <em>Navigate to the <code>ATV-GTG-for-x86_64</code> folder within the link.</em>
+</p>
 
-  <hr>
+<hr>
+
 
   <h2>💿 Setup Instructions</h2>
 
