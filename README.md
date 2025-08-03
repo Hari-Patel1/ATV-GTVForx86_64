@@ -1,65 +1,185 @@
-# ATV-GTG-for-x86_64
-Android and Google TV ported from arm to x86 and x64 devices
 
-all files needed can be found here: 
-set up:
-first flash the image using rufus. the device used to flash can be usb or hard drive. When booting into the TVOS you must always have it attatched to the system
 
-the install as it stands would not store the user data. all changes would be lost on reboot.
-to fix this download a data.zip file for the corresponding size. then unzip and paste into the system partition. This will store the data
-issue: normally the system partition dosnetl let files bigger than 4 gb so to get data bigger than this in there you need to archive and paste each one into the partition then unzip inside the device.
+  <h1>ATV-GTG-for-x86_64</h1>
+  <p><strong>Android TV and Google TV ported to x86_64 devices (PCs, laptops, etc.)</strong></p>
 
-if you intend on conneciting to HDMI and getting an audio output out of the device you are connected to you must follow the steps.
-First in the TeraBox link you will find a folver at >ATV-GTG-for-x86_64 >audio. copy the audio folver onto another storage device. 
-Boot into your device and give root permissions to the FX file manager and Smartpack kernel manager.
-install the APK and analyse your device. scroll across to output, where you should find your output. You need to know which HDMI rail your output will be at. There should be a number by your HDMI output (0, 1 2)
-this number corresponds to the script you will need.
-Copy that script and the test.wav file onto your filesystem. put it somewhere acessible.
-Using FX file manager, run the script with the corresponding hdmi output with root permissions (Execute with root). This script detects which PCM your putput is coming out of. WHen it has detected it should play a sound out of your output device. Make a ot of that PCM and the HDMI rail that you had sucess with.
+  <p>This project brings Android and Google TV to x86 and x64 platforms, allowing you to run TV-optimized Android OS on standard laptops, desktops, and other non-ARM devices.</p>
 
-change this line in the script you just executed:
+  <hr>
 
-setprop hal.audio.out.hdmi pcmC0D7p
+  <h2>🔗 Download</h2>
+  <p>All necessary files can be found here: <strong><a href="#">https://terabox.com/s/1KLFes4RqTjn8IE3nu2VZUA</a></strong><br>
+  <em>Navigate to the <code>ATV-GTG-for-x86_64</code> folder within the link.</em></p>
 
-the first number after setprop hal.audio.out.hdmi is the HDMI rail you are using. you shouldnt need to change this, but if you do it should correspond to the output of you HDMI you found when you installed the APK and navigated to output or sound.
-The seccond sumber is the PCM that your sound comes out of. You should have made a note of it above. For example if your PCM 5 works and your HDMI is 2 your line should look like:
+  <hr>
 
-setprop hal.audio.out.hdmi pcmC2D5p
+  <h2>💿 Setup Instructions</h2>
 
-OPTIONAL:
-when you know which pcm your outpuc comes out of, to speed up the script you can replace the for loop with the number you know works:
+  <h3>1. Flash the Image</h3>
+  <ul>
+    <li>Use <strong>Rufus</strong> to flash the provided image onto a USB drive or external hard disk.</li>
+    <li>Boot the target system using this drive.</li>
+    <li>⚠️ <strong>Important:</strong> You must keep the flashed device attached at all times while using the OS.</li>
+  </ul>
 
-example: if PCM 5 works, you can change this:
+  <h3>2. Persistent Storage Fix (Saving User Data)</h3>
+  <p>By default, the system doesn't retain any changes after reboot. To enable persistent storage:</p>
+  <ol>
+    <li>Download the appropriate <code>data.zip</code> file (choose the correct size for your use).</li>
+    <li>Unzip it and copy the contents into the <strong>system partition</strong> of the flashed drive.</li>
+  </ol>
 
-for pcm in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
+  <h4>⚠️ File Size Limit Warning</h4>
+  <p>The system partition usually doesn't accept files larger than <strong>4GB</strong>. To work around this:</p>
+  <ul>
+    <li>Split large files into smaller parts using an archive format (e.g., <code>.zip</code>, <code>.7z</code>, etc.).</li>
+    <li>Copy the parts individually to the partition.</li>
+    <li>Unzip them <strong>inside the device</strong> after boot.</li>
+  </ul>
+
+  <hr>
+
+  <h2>🔊 HDMI Audio Output Setup</h2>
+  <p>To enable HDMI audio output on your device, follow the steps below.</p>
+
+  <h3>📁 Step 1: Copy Required Files</h3>
+  <ul>
+    <li>In the TeraBox directory, go to: <code>ATV-GTG-for-x86_64 &gt; audio</code></li>
+    <li>Copy the entire <strong>audio</strong> folder onto another storage device (e.g., USB stick).</li>
+  </ul>
+
+  <h3>🛠 Step 2: Analyze HDMI Output</h3>
+  <ol>
+    <li>Boot into your Android TV device.</li>
+    <li>Install the following tools:
+      <ul>
+        <li><strong>FX File Manager</strong> (grant it root access).</li>
+        <li><strong>SmartPack Kernel Manager</strong> (also grant root access).</li>
+      </ul>
+    </li>
+    <li>Install the APK file found in the <code>audio</code> folder.</li>
+    <li>Open the APK and navigate to the <strong>Output</strong> or <strong>Sound</strong> tab.
+      <ul>
+        <li>Identify your <strong>HDMI output rail number</strong> (e.g., <code>0</code>, <code>1</code>, <code>2</code>).</li>
+        <li>Make a note of this number — you'll need it in the next steps.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>🔍 Step 3: Run the Detection Script</h3>
+  <ol>
+    <li>Copy the <code>test.wav</code> and the correct detection script from the <code>audio</code> folder to your device’s internal filesystem.</li>
+    <li>Using <strong>FX File Manager</strong>, run the script with <strong>root permissions</strong> (tap-and-hold → Execute with root).</li>
+    <li>The script will loop through multiple <strong>PCM outputs</strong>, attempting to play the test sound.</li>
+    <li>When audio successfully plays from your HDMI device:
+      <ul>
+        <li>Note the <strong>PCM number</strong> that worked.</li>
+        <li>Also confirm the <strong>HDMI rail</strong> you used.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>✏️ Step 4: Modify the Script for Your Output</h3>
+  <p>Locate this line in the script:</p>
+  <pre><code>setprop hal.audio.out.hdmi pcmC0D7p</code></pre>
+
+  <p>Update it with the correct HDMI rail and PCM number:</p>
+  <ul>
+    <li>The number after <code>C</code> is your HDMI rail.</li>
+    <li>The number after <code>D</code> is the working PCM.</li>
+  </ul>
+
+  <h4>Example</h4>
+  <p>If HDMI rail <code>2</code> and PCM <code>5</code> worked, modify the line to:</p>
+  <pre><code>setprop hal.audio.out.hdmi pcmC2D5p</code></pre>
+
+  <h3>⚡ Optional: Speed Up the Script</h3>
+  <p>Once you've identified the correct PCM, you can optimize the detection script to test only that value.</p>
+
+  <h4>Original Loop</h4>
+  <pre><code>for pcm in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
     echo "🔊 Testando PCM $pcm..." | tee -a "$LOG"
-	
-	if aplay -D plughw:0,$pcm "$AUDIO"; then
+
+    if aplay -D plughw:0,$pcm "$AUDIO"; then
         echo "✅ PCM $pcm OK" | tee -a "$LOG"
     else
         echo "❌ PCM $pcm FALHOU" | tee -a "$LOG"
     fi
-    
+
     echo "------------------------------" >> "$LOG"
     sleep 2
-done
+done</code></pre>
 
-to this:
-
-for pcm in 5; do
+  <h4>Optimized Loop (for PCM 5)</h4>
+  <pre><code>for pcm in 5; do
     echo "🔊 Testando PCM $pcm..." | tee -a "$LOG"
-	
-	if aplay -D plughw:0,$pcm "$AUDIO"; then
+
+    if aplay -D plughw:0,$pcm "$AUDIO"; then
         echo "✅ PCM $pcm OK" | tee -a "$LOG"
     else
         echo "❌ PCM $pcm FALHOU" | tee -a "$LOG"
     fi
-    
+
     echo "------------------------------" >> "$LOG"
     sleep 2
-done
+done</code></pre>
 
-This just speeds up the Script. 
+  <hr>
 
-And you are done. your Android or Google TV device running on a x86 or x64 device should now be setup.
+  <h2>✅ Final Step</h2>
+  <p>You're done! 🎉</p>
+  <p>Your <strong>Android or Google TV system</strong> is now fully functional on your x86 or x64 device, with:</p>
+  <ul>
+    <li>Persistent storage support</li>
+    <li>HDMI audio output enabled</li>
+    <li>Full Google TV or Android TV experience, including the <strong>Google Play Store</strong></li>
+  </ul>
 
+  <hr>
+
+  <h2>📌 Notes</h2>
+  <ul>
+    <li>This project is <strong>under active development</strong>.</li>
+    <li>Feel free to open issues or contribute via pull requests.</li>
+    <li>Feedback is always welcome!</li>
+  </ul>
+
+  <hr>
+
+  <h2>📜 License</h2>
+  <p>This project is released under the <a href="#">MIT License</a>.</p>
+
+  <hr>
+
+  <h2>🤝 Contributing</h2>
+  <p>Want to help improve ATV-GTG-for-x86_64?</p>
+  <ol>
+    <li>Fork this repo</li>
+    <li>Create a new branch (<code>git checkout -b feature-name</code>)</li>
+    <li>Commit your changes (<code>git commit -m "Add feature"</code>)</li>
+    <li>Push to your branch (<code>git push origin feature-name</code>)</li>
+    <li>Open a pull request!</li>
+  </ol>
+
+  <hr>
+
+  <h2>📷 Screenshots (Optional)</h2>
+  <blockquote>
+    <p><em>Coming soon. You can help by submitting your own screenshots!</em></p>
+  </blockquote>
+
+  <hr>
+
+  <h2>👥 Credits</h2>
+  <ul>
+    <li><strong>Project Lead:</strong> Hari Patel</li>
+    <li><strong>Porting & Development:</strong> Hari Patel</li>
+    <li><strong>Documentation & Setup Guide:</strong> Hari Patel</li>
+    <li><strong>Special thanks:</strong> The open-source Android-x86 and TV development communities</li>
+  </ul>
+
+  <p>Thanks for using <strong>ATV-GTG-for-x86_64</strong>!<br>
+  Happy streaming! 📺</p>
+
+</body>
+</html>
