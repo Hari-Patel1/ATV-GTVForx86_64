@@ -62,7 +62,7 @@
     <li>Boot into your Android TV device.</li>
     <li>Install the following tools:
       <ul>
-        <li><strong>FX File Manager</strong> (grant it root access).</li>
+        <li><strong>FX File Manager</strong> (grant it root access with kernelSU application).</li>
         <li><strong>SmartPack Kernel Manager</strong> (also grant root access).</li>
       </ul>
     </li>
