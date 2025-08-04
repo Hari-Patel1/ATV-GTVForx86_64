@@ -9,7 +9,7 @@
 
 <h2>🔗 Download</h2>
 <p>
-  ALL necessary files can be found here:
+  ALL necessary files can be found here (Copy link and open in new tab):
   <strong>
     <a href="https://terabox.com/s/1sEJRhMXYkXwDJvkLw7Yy0g" target="_blank" rel="noopener noreferrer">
       https://terabox.com/s/1sEJRhMXYkXwDJvkLw7Yy0g
