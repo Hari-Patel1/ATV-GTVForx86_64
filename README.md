@@ -179,14 +179,6 @@ done</code></pre>
 
   <hr>
 
-  <h2>👥 Credits</h2>
-  <ul>
-    <li><strong>Project Lead:</strong> Hari Patel</li>
-    <li><strong>Porting & Development:</strong> Hari Patel</li>
-    <li><strong>Documentation & Setup Guide:</strong> Hari Patel</li>
-    <li><strong>Special thanks:</strong> The open-source Android-x86 and TV development communities</li>
-  </ul>
-
   <p>Thanks for using <strong>ATV-GTG-for-x86_64</strong>!<br>
   Happy streaming! 📺</p>
 
